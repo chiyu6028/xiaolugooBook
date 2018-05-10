@@ -9,9 +9,9 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;  
 import org.springframework.data.redis.core.RedisTemplate;  
 import org.springframework.data.redis.serializer.RedisSerializationContext;  
-import org.springframework.data.redis.serializer.StringRedisSerializer;  
-import org.springframework.session.SessionRepository;  
-import org.springframework.session.data.redis.RedisOperationsSessionRepository;  
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.session.SessionRepository;
+import org.springframework.session.data.redis.RedisOperationsSessionRepository;
   
 import java.time.Duration;  
   
@@ -57,19 +57,19 @@ public class RedisConfig extends CachingConfigurerSupport {
         return redisTemplate;  
     }  
   
-  
-    /** 
-     * 设置spring session redis 序列化方式 
-     * @param factory 
-     * @return 
-     */  
-    @Bean  
-    public SessionRepository sessionRepository(RedisConnectionFactory factory){  
-        RedisOperationsSessionRepository sessionRepository =  new RedisOperationsSessionRepository(redisTemplate(factory));  
-        FastJsonRedisSerializer<Object> fastJsonRedisSerializer = new FastJsonRedisSerializer<>(Object.class);  
-        sessionRepository.setDefaultSerializer(fastJsonRedisSerializer);  
+
+    /**
+     * 设置spring session redis 序列化方式
+     * @param factory
+     * @return
+     */
+    @Bean
+    public SessionRepository sessionRepository(RedisConnectionFactory factory){
+        RedisOperationsSessionRepository sessionRepository =  new RedisOperationsSessionRepository(redisTemplate(factory));
+        FastJsonRedisSerializer<Object> fastJsonRedisSerializer = new FastJsonRedisSerializer<>(Object.class);
+        sessionRepository.setDefaultSerializer(fastJsonRedisSerializer);
         sessionRepository.setDefaultMaxInactiveInterval(36000);
         sessionRepository.setRedisKeyNamespace("xiaoluSession");
-        return sessionRepository;  
-    }  
+        return sessionRepository;
+    }
 }  
