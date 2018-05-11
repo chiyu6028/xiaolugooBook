@@ -49,8 +49,6 @@ public class SessionFilter implements Filter {
             }
             return;
         }
-
-
     }
 
     @Override

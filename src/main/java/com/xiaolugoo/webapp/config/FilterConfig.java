@@ -21,7 +21,7 @@ public class FilterConfig {
     @Bean
     public FilterRegistrationBean sessionFilte(){
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new SessionFilter());
-        filterRegistrationBean.addUrlPatterns("/user/*");
+        filterRegistrationBean.addUrlPatterns("/user/*","/book/*");
         return filterRegistrationBean;
     }
 }
